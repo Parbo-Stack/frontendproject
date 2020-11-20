@@ -1,0 +1,13 @@
+form{
+    display: flex;
+}
+
+Textarea {
+    width: 100%;
+    borderRadius: '5px';
+}
+
+button {
+    width: 20%;
+    height: 52px;
+}
