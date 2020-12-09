@@ -14,5 +14,12 @@ This app was created using npm install react and run with npm start.
 * UserName: Admin
 * Password: BlauweBeker$12
 
+#Crud
+Although time wasn't on my side i was able to create a fully working 
+crud repo.
+
+#Project on Git
+https://github.com/Parbo-Stack/frontendproject.git
+
 
 

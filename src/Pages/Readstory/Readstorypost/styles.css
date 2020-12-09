@@ -1,0 +1,20 @@
+.date {
+    font-family: Arial, serif;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.PostContainer {
+    background: white;
+    width: 70%;
+    margin: 0 auto;
+    max-width: 1000px;
+    /*display: flex;*/
+
+}
+
+.PostContainer h1 {
+    font-weight: bolder;
+    text-align: center;
+}
