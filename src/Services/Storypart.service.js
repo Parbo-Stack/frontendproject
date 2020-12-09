@@ -4,7 +4,7 @@ import http from "../http";
 const create = (data) => {
     //(JSON.stringify to get the info
     console.log(JSON.stringify({data}))
-    return http.post(`/story/${data.storyId}/storypart`);
+    return http.post(`/story/${data.postId}/storypart`, {body:data.body});
 }
 
 export default {

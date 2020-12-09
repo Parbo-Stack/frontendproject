@@ -4,7 +4,7 @@ function CommentAdd(props) {
 
     const {handleCommentSubmit} = props;
 
-    const [storypart, setStoryPart] = useState('');
+    const [storyPart, setStoryPart] = useState('');
 
     return (
         <div>
@@ -12,12 +12,13 @@ function CommentAdd(props) {
                 <div className="card-header"><strong>Comments</strong></div>
                 <div className="card-body">
                     <textarea name="comments" className="form-control" placeholder="Add a new comment"
-                              onChange={event => setStoryPart(event.target.value)} value={storypart}/>
+                              onChange={event => setStoryPart(event.target.value)} value={storyPart}/>
                 </div>
             </div>
             <div>
                 <button className="btn btn-primary mr-3" onClick={event =>  {
-                    handleCommentSubmit (storypart);
+                    // console.log(JSON.stringify(storyPart))
+                    handleCommentSubmit (storyPart);
                     setStoryPart('');
                 }}>Comment</button>
                 {/*<button className="btn btn-warning"> Close issue</button>*/}

@@ -8,8 +8,6 @@ export default function ReadStoryPost() {
     let {storyId} = useParams();
     const [post, setPost] = useState({})
 
-    //i need to pass the userId also..youtube tutorials..facebook clone etc
-    //de storyId word al meegezonden, dit werkt wel via postman
     const getStory = () => {
         StoryService.getById(storyId)
             .then(response => {
