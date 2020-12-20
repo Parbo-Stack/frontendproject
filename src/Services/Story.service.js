@@ -13,8 +13,13 @@ const findByTitle = async (title) => {
 };
 
 const createStory = async (data) => {
-    return await http.post('/story/admin', data);
+    return await http.post('/story', data);
 };
+
+const getAllByAuthor = async (author) => {
+    console.log(JSON.stringify(author))
+    return await http.get(`/stories/${author}`)
+}
 
 const updateStory = async (id, data) => {
     return await http.put(`/story/${id}`, data);
@@ -35,5 +40,6 @@ export default {
     updateStory,
     deleteById,
     removeAll,
-    findByTitle
+    findByTitle,
+    getAllByAuthor
 }

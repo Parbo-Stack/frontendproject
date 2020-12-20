@@ -44,7 +44,7 @@ const EditStory = props => {
             authorId: currentStory.authorId,
             published: status
         };
-//de id is undefined omdat het de id niet herkent als id maar als b.v storyId
+
         StoryService.updateStory(currentStory.storyId, data)
             .then(response => {
                 setCurrentStory({...currentStory, published: status})

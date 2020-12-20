@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from "react";
-import UserService from "../Services/User.service";
+import StoryPartService from "../../Services/Storypart.service";
 import {Link} from "react-router-dom";
 
-const BoardAdmin = () => {
-    const [users, setUsers] = useState([]);
-    const [currentUser, setCurrentUser] = useState(null);
+const StoryPartList = () => {
+    const [parts, setParts] = useState([]);
+    const [currentPart, setCurrentPart] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
 
     useEffect(() => {
-        retrieveUsers();
+        retrieveParts();
     }, []);
 
-    const retrieveUsers = () => {
-        UserService.getAllUsers()
+    const retrieveParts = () => {
+        StoryPartService.getAll()
             .then(response => {
-                setUsers(response.data);
+                setParts(response.data);
                 console.log(response.data);
             })
             .catch(e => {
@@ -22,66 +22,73 @@ const BoardAdmin = () => {
             });
     };
 
+
     const refreshList = () => {
-        retrieveUsers();
-        setCurrentUser(null);
+        retrieveParts();
+        setCurrentPart(null);
         setCurrentIndex(-1);
     };
 
-    const setActiveUser = (user, index) => {
-        setCurrentUser(user);
+    const setActivePart = (part, index) => {
+        setCurrentPart(part);
         setCurrentIndex(index);
     };
 
     return (
         <div className="list row">
             <div className="col-md-6">
-                <h4>Users List</h4>
+                <h4>Story Parts</h4>
 
                 <ul className="list-group">
-                    {users &&
-                    users.map((user, index) => (
+                    {parts &&
+                    parts.map((part, index) => (
                         <li
                             className={
                                 "list-group-item " + (index === currentIndex ? "active" : "")
                             }
-                            onClick={() => setActiveUser(user, index)}
+                            onClick={() => setActivePart(part, index)}
                             key={index}
                         >
-                            {user.username}
+                            {part.body}
                         </li>
                     ))}
                 </ul>
-
             </div>
             <div className="col-md-6">
-                {currentUser ? (
+                {currentPart ? (
                     <div>
-                        <h4>Users</h4>
+                        <h4>Parts</h4>
                         <div>
                             <label>
-                                <strong>Email:</strong>
+                                <strong>Body:</strong>
                             </label>{" "}
-                            {currentUser.email}
+                            {currentPart.body}
                         </div>
                         <div>
                             <label>
-                                <strong>Username:</strong>
+                                <strong>LocalDate:</strong>
                             </label>{" "}
-                            {currentUser.username}
+                            {currentPart.localDate}
                         </div>
                         <div>
                             <label>
-                                <strong>UserId:</strong>
+                                <strong>Id:</strong>
                             </label>{" "}
-                            {currentUser.userId}
+                            {currentPart.storyPartId}
                         </div>
-                        <Link//de id is undefined omdat het de id niet herkent als id maar als b.v storyId
-                            to={"/edituser/" + currentUser.userId}
+                        {/*<div>*/}
+                        {/*    <label>*/}
+                        {/*        <strong>Id:</strong>*/}
+                        {/*    </label>{" "}*/}
+                        {/*    {currentPart.user.username}*/}
+                        {/*</div>*/}
+                        <Link
+                            to={"/deletepart/" + currentPart.storyPartId}
                             className="badge badge-warning"
                         >
                             Edit
                         </Link>
+                        {console.log(JSON.stringify(currentPart.storyPartId))}
                     </div>
                 ) : (
                     <div>
@@ -94,4 +101,4 @@ const BoardAdmin = () => {
     );
 };
 
-export default BoardAdmin;
+export default StoryPartList;

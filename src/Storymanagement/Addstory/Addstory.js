@@ -63,7 +63,7 @@ const AddStory = () => {
                     </div>
                 ) :
                 <div className="form-group">
-                    <label htmlFor="title">Title</label>
+                    <br/>
                     <input
                         type="text"
                         className="form-control"
@@ -71,6 +71,7 @@ const AddStory = () => {
                         required
                         value={story.title}
                         onChange={handleInputChange}
+                        placeholder="Title"
                         name="title"
                     />
                     <textarea
@@ -80,11 +81,10 @@ const AddStory = () => {
                         required
                         value={story.body}
                         onChange={handleInputChange}
-                        placeholder="Body"
+                        placeholder="Body..."
                         name="body">
         </textarea>
                     <div className="form-group">
-                        <label htmlFor="authorId">Author</label>
                         <input
                             type="text"
                             className="form-control"
@@ -92,6 +92,7 @@ const AddStory = () => {
                             required
                             value={story.authorId}
                             onChange={handleInputChange}
+                            placeholder="Author"
                             name="authorId"
                         />
                     </div>

@@ -3,14 +3,21 @@ import {Switch, Route, Redirect } from 'react-router-dom';
 import AuthService from '../Services/Auth.service'
 import StoriesList from "../Storymanagement/Storylist/Storylist";
 import EditStory from "../Storymanagement/Editstory/Editstory";
-import Readstory from "../Pages/Readstory/Readstory";
+import ReadStory from "../Pages/Readstory/Readstory";
 import ReadStoryPost from "../Pages/Readstory/Readstorypost/Readstorypost";
-import Home from "../Pages/Home/Home";
 import Login from "../Components/Login";
 import Register from "../Components/Register";
 import BoardUser from "../Components/BoardUser";
 import AddStory from "../Storymanagement/Addstory/Addstory";
 import Profile from "../Components/Profile";
+import BoardAdmin from "../Components/BoardAdmin";
+import EditUser from "../Components/EditUser";
+import StoryPartList from "../Storymanagement/StoryPart/StoryPartList";
+import EditPart from "../Storymanagement/StoryPart/EditPart";
+import HomePage from "../Pages/HomePage/HomePage";
+import WriteStory from "../Pages/Writestory/Writestory";
+import UsersStory from "../Storymanagement/UsersStory/UsersStory";
+
 
 const PageRouting = () => {
 const [currentUser, setCurrentUser] = useState(undefined);
@@ -38,7 +45,7 @@ const [currentUser, setCurrentUser] = useState(undefined);
 
    return(
         <Switch>
-            <Route exact path={["/", "/home"]} component={Home}/>
+            <Route exact path={["/", "/home"]} component={HomePage}/>
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register}/>
             <Route exact path="/profile" component={Profile} />
@@ -46,7 +53,13 @@ const [currentUser, setCurrentUser] = useState(undefined);
             <ProtectedRoute path="/addstory" component={AddStory}/>
             <ProtectedRoute path="/storieslist" component={StoriesList}/>
             <ProtectedRoute path="/editstory/:id" component={EditStory}/>
-            <ProtectedRoute path="/readstory" component={Readstory}/>
+            <ProtectedRoute path="/readstory" component={ReadStory}/>
+            <ProtectedRoute path="/writestory" component={WriteStory}/>
+            <ProtectedRoute path="/admin" component={BoardAdmin}/>
+            <ProtectedRoute path="/edituser/:id" component={EditUser}/>
+            <ProtectedRoute path="/partslist" component={StoryPartList}/>
+            <ProtectedRoute path="/usersstory" component={UsersStory}/>
+            <ProtectedRoute path="/deletepart/:id" component={EditPart}/>
             <ProtectedRoute path="/readstorypost/:storyId" component={ReadStoryPost}/>
             <Route path="" component={() => "404 NOT FOUND"}/>
         </Switch>

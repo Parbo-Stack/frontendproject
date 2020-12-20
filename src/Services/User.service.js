@@ -1,24 +1,25 @@
-import axios from "axios";
-import authHeader from "./Auth-header";
+import http from "../http"
 
-const API_URL = "http://localhost:8081/api/test/";
-
-const getPublicContent = () => {
-    return axios.get(API_URL + "all");
+const getAllUsers = async () => {
+    return await http.get('/users');
 };
 
-const getUserBoard = () => {
-    return axios.get(API_URL + "user", { headers: authHeader() });
+const getById = async (props) => {
+    console.log(JSON.stringify(props))
+    return await http.get(`/user/${props}`);
 };
 
-
-const getAdminBoard = () => {
-    return axios.get(API_URL + "admin", { headers: authHeader() });
+const deleteById = async (id) => {
+    return await http.delete(`/user/${id}`);
 };
 
+const updateUser = async (id) => {
+    return await http.put(`/user/${id}`)
+}
 
 export default {
-    getPublicContent,
-    getUserBoard,
-    getAdminBoard,
-};
+    getAllUsers,
+    getById,
+    deleteById,
+    updateUser
+}

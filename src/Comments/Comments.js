@@ -1,13 +1,25 @@
 import React, {Component} from "react";
 
 class Comment extends Component {
-    // constructor(props) {
-    //     super(props);
+
 
     render() {
-        const {body} = this.props;
+
+        const {body, localDate, author} = this.props;
+
         return (
-            <div>{body}</div>
+
+            <div className="comment card mb-2">
+
+                <div className="card-body">
+
+                    {body} <br/>
+
+                    <strong>created at:</strong> {localDate} {author}
+
+                </div>
+
+            </div>
         );
     }
 }

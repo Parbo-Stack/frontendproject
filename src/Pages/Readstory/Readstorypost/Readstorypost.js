@@ -6,7 +6,14 @@ import CommentGroup from "../../../Comments/CommentGroup";
 
 export default function ReadStoryPost() {
     let {storyId} = useParams();
-    const [post, setPost] = useState({})
+    const initialState = {
+        title: '',
+        body: '',
+        localDate: '',
+        storyParts: [],
+    }
+
+    const [post, setPost] = useState(initialState);
 
     const getStory = () => {
         StoryService.getById(storyId)
@@ -27,8 +34,8 @@ export default function ReadStoryPost() {
         <div className="PostContainer">
             <h1> {post.title} </h1>
             <p> {post.body} </p>
-            <h3 className="date">posted on: {post.localDate}</h3>
-            <CommentGroup postId={storyId}/>
+            <h3 className="date"> posted on: {post.localDate}</h3>
+            <CommentGroup postId={storyId} storyParts={post.storyParts}/>
         </div>
     );
 }

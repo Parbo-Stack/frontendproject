@@ -30,7 +30,7 @@ export default function ReadStory() {
                 {postList.map ((val, key) => {
                     return (
                         <div className="Post" key={key} onClick={(() => {
-                            history.push(`/readstorypost/${val.storyId}/${val.userId}`)
+                            history.push(`/readstorypost/${val.storyId}`)
                         })}>
                             <style>{'Post {h1: font-family: Arial, serif;}'}</style>
                             <h1 className="title">{val.title}</h1>

@@ -1,41 +1,9 @@
-import React, {useState, useEffect, useContext} from "react";
-import {Switch, Route, Link, Redirect} from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {Link} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AuthService from "./Services/Auth.service";
-import Home from "./Pages/Home/Home";
-import {AuthContext} from './Context/AuthContext';
 import PageRouting from "./Routes/Routes";
-
-const AuthenticatedRoute = ({children, ...rest}) => {
-    const authContext = useContext(AuthContext);
-    return (
-        <Route {...rest} render={() =>
-            authContext.isAuthenticated() ? (
-                <nav>
-                    {children}
-                </nav>
-            ) : (
-                <Redirect to="/"/>
-            )
-        }/>
-    )
-}
-
-const AdminRoute = ({children, ...rest}) => {
-    const authContext = useContext(AuthContext);
-    return (
-        <Route {...rest} render={() =>
-            authContext.isAuthenticated() && authContext.isAdmin() ? (
-                <Home>
-                    {children}
-                </Home>
-            ) : (
-                <Redirect to="/"/>
-            )
-        }/>
-    )
-}
 
 function App() {
     const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -84,6 +52,27 @@ function App() {
                             </Link>
                         </li>
                     )}
+                    {showAdminBoard && (
+                        <li className="nav-item">
+                            <Link to={"/admin"} className="nav-link">
+                                Admin Board
+                            </Link>
+                        </li>
+                    )}
+                    {showAdminBoard && (
+                        <li className="nav-item">
+                            <Link to={"/usersstory"} className="nav-link">
+                                Users Story
+                            </Link>
+                        </li>
+                    )}
+                    {showAdminBoard && (
+                        <li className="nav-item">
+                            <Link to={"/partslist"} className="nav-link">
+                                StoryPart List
+                            </Link>
+                        </li>
+                    )}
                     {showUserBoard && (
                         <li className="nav-item">
                             <Link to={"/readstory"} className="nav-link">
@@ -105,8 +94,8 @@ function App() {
                             </Link>
                         </li>
                     )}
-                </div>
 
+                </div>
                 {currentUser ? (
                     <div className="navbar-nav ml-auto">
                         <li className="nav-item">

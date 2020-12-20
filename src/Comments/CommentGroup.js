@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import CommentAdd from './CommentAdd';
 import Comment from '../Comments/Comments';
 import axios from '../Services/Storypart.service';
-import AuthHeader from "../Services/Auth-header";
 
 class CommentGroup extends Component {
     constructor(props) {
@@ -11,12 +10,18 @@ class CommentGroup extends Component {
         this.state = {
             body: [],
             postId: props.postId,
-            storyParts: [],
+            storyParts: props.storyParts || [],
+            datePublished: new Date(),
             isLoaded: false
         }
 
+
         this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
 
+    }
+
+    async componentDidMount() {
+        await this.setState({storyParts: this.props.storyParts});
     }
 
     handleCommentSubmit(data) {
@@ -24,6 +29,8 @@ class CommentGroup extends Component {
         const postData = {
             body: data,
             postId: this.state.postId,
+            author: this.state.author,
+            datePublished: new Date(),
         };
 
         axios.create(postData).then((response) => {
@@ -31,44 +38,28 @@ class CommentGroup extends Component {
             let storyParts = this.state.storyParts;
             if (response.data)
                 storyParts.unshift({
-                    id: response.data.id,
+                    id: response.data.storyId,
                     body: response.data.body,
-                    // storyParts:response.data.storyParts
+                    author: response.data.author,
+                    localDate: response.data.localDate,
                 })
             this.setState({storyParts: storyParts})
         });
     }
 
     renderComments() {
-        const {storyParts} = this.state;
-        storyParts.map(comment => {
-            const {id, body} = comment;
+        return this.props.storyParts.map((comment, index) => {
+            const {storyId, body, localDate, author} = comment;
             return (
-                <Comment key={id} body={body}/>
-            );
+                <Comment key={index} storyId={storyId} body={body} localDate={localDate} author={author}/>
+        );
+
         })
     }
-
-    // async componentDidMount() {
-    //     let {postId} = this.props;
-    //     console.log(JSON.stringify(postId))
-    //     fetch(`http://localhost:8081/api/story/${postId}/storyparts`,{headers: AuthHeader()})
-    //         .then((storyParts) => {
-    //             console.log(JSON.stringify(storyParts))
-    //         this.setState({storyParts})
-    //     })
-        // http.fetchStoryParts(storyId, {headers: AuthHeader()})
-        //     .then((storyParts) => {
-        //         console.log(JSON.stringify(storyParts))
-        //         this.setState({storyParts})
-        //     })
-
-    // }
 
     render() {
         return (
             <div>
-                <Comment/>
                 {this.renderComments()}
                 <CommentAdd handleCommentSubmit={this.handleCommentSubmit}/>
             </div>
