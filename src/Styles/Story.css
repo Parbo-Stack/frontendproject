@@ -2,33 +2,28 @@
     margin:0;
     padding:0;
 }
-.ReadStory {
-    display: flex;
-    justify-content: center;
-    height:calc(100vh - 88px);
-    font-family: Arial, serif;
-}
 
-.PostContainer {
-    height: 10vh;
-    width: 100%;
-    margin-top:50px;
+.Story {
+    width:90%;
+    height:60vh;
     display: flex;
-    justify-content: left;
-    background-color: white;
-    box-shadow: 2px 1px 8px transparent;
-    flex-direction: column;
-    margin-right: 25px;
+    grid-gap:0;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    align-items: center;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
 }
 
 .Post {
-    background: linear-gradient(#ffe632, #ffe69b 70%);
+    background: linear-gradient(lightskyblue, lightyellow 70%);
     border-radius: 10px 10px 10px 10px;
     overflow: hidden;
     height: 300px;
     max-height: 70vh;
     -webkit-box-shadow: 0 12px 18px -6px #e31b1b;
-    box-shadow: 0 12px 18px -6px #dfe2ff;
+    box-shadow: 0 12px 18px -6px lightskyblue;
     object-fit: contain;
     width: 70%;
     transition: transform 450ms;
@@ -38,7 +33,6 @@
     transform:scale(1.08);
     opacity:1;
 }
-
 
 .Post {
     width: 40%;
@@ -50,7 +44,7 @@
     display: grid;
     justify-content: center;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
 }
 
 .Post p {
@@ -61,31 +55,34 @@
     cursor:pointer;
 }
 
-.PostStory p{
-    font-family: Cambria, serif;
-    font-size: 25px;
+.Post p{
+    font-family: Oxygen;
+    font-size: 16px;
     text-align: center;
-    font-weight: bold;
+    font-style: italic;
+    font-weight: normal;
     text-transform: capitalize;
 }
 
-.PostStory h4{
+.Post h4{
     text-align: justify;
     text-indent: 2em;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 25px;
     margin-bottom: 32px;
 }
 
 .localDate {
-    font-family: Arial, serif;
+    font-family: Oxygen;
     font-style: italic;
     font-weight: normal;
     font-size: 14px;
 }
 
 .title {
-    font-family: Arial, serif;
+    font-family: Oxygen;
     font-weight: bolder;
+    font-style: italic;
     font-size: 30px;
 }
+

@@ -20,7 +20,6 @@ function CommentAdd(props) {
                     handleCommentSubmit(comment);
                     setComment('');
                 }}>Comment</button>
-                {/*<button className="btn btn-warning"> Close issue</button>*/}
             </div>
         </div>
     );

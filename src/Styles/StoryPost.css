@@ -1,8 +1,9 @@
 .date {
-    font-family: Arial, serif;
+    font-family: Oxygen;
     font-style: italic;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 18px;
+    text-align: right;
 }
 
 .PostContainer {
@@ -17,4 +18,11 @@
 .PostContainer h1 {
     font-weight: bolder;
     text-align: center;
+}
+
+.author {
+    font-family: Oxygen;
+    font-size: 18px;
+    font-style: italic;
+    text-align: right;
 }

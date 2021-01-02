@@ -1,10 +1,11 @@
-import React, {useState, useRef, useContext} from "react";
+import React, {useState, useRef} from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import AuthService from "../Services/Auth.service";
-import { AuthContext } from "../Context/AuthContext";
+import '../Styles/RegisterForm.css';
+
 
 const required = (value) => {
     if (!value) {
@@ -101,12 +102,11 @@ const Register = (props) => {
     };
 
 
-
     return (
-        <div className="col-md-12">
+        <div className="col-md-12" >
             <div className="card card-container">
                 <img
-                    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                    src="https://pixy.org/src/454/thumbs350/4547159.jpg"
                     alt="profile-img"
                     className="profile-img-card"
                 />

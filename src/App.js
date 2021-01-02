@@ -29,13 +29,18 @@ function App() {
     return (
         <div>
             <nav className="navbar navbar-expand navbar-dark bg-dark">
-                <Link to={"/"} className="navbar-brand">
+                <Link to={"/"} className="navbar-brand" style={{fontFamily: "Oxygen"}}>
                     Owie
                 </Link>
                 <div className="navbar-nav mr-auto">
                     <li className="nav-item">
                         <Link to={"/home"} className="nav-link">
                             Home
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to={"/about"} className="nav-link">
+                            About
                         </Link>
                     </li>
                     {showAdminBoard && (
@@ -54,8 +59,8 @@ function App() {
                     )}
                     {showAdminBoard && (
                         <li className="nav-item">
-                            <Link to={"/admin"} className="nav-link">
-                                Admin Board
+                            <Link to={"/userslist"} className="nav-link">
+                                Users List
                             </Link>
                         </li>
                     )}
@@ -73,8 +78,15 @@ function App() {
                             </Link>
                         </li>
                     )}
-                    {showUserBoard && (
+                    {showAdminBoard && (
                         <li className="nav-item">
+                            <Link to={"/addfinishstory"} className="nav-link">
+                                Add FinishStory
+                            </Link>
+                        </li>
+                    )}
+                    {showUserBoard && (
+                        <li className="nav-item ">
                             <Link to={"/readstory"} className="nav-link">
                                 Read Story
                             </Link>
@@ -93,6 +105,7 @@ function App() {
                                 Finish Story
                             </Link>
                         </li>
+
                     )}
 
                 </div>

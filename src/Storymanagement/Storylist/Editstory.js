@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import StoryService from "../../Services/Story.service";
-import './style.css'
+import './styles.css'
 
 
 const EditStory = props => {

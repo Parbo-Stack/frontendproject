@@ -2,10 +2,9 @@ import React, {Component} from "react";
 
 class Comment extends Component {
 
-
     render() {
 
-        const {body, localDate, author} = this.props;
+        const {body, localDate} = this.props;
 
         return (
 
@@ -15,7 +14,7 @@ class Comment extends Component {
 
                     {body} <br/>
 
-                    <strong>created at:</strong> {localDate} {author}
+                    <strong>created at:</strong> {localDate}
 
                 </div>
 

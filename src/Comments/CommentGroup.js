@@ -1,59 +1,58 @@
 import React, {Component} from 'react';
 import CommentAdd from './CommentAdd';
-import Comment from '../Comments/Comments';
+import Comment from './Comments';
 import axios from '../Services/Storypart.service';
 
 class CommentGroup extends Component {
     constructor(props) {
         super(props);
 
+        let arrUrl = window.location.href.split('/');
+        let storyId = arrUrl[arrUrl.length - 1];
+
         this.state = {
+            loading: false,
             body: [],
-            postId: props.postId,
-            storyParts: props.storyParts || [],
-            datePublished: new Date(),
-            isLoaded: false
+            localDate: new Date(),
+            storyId: storyId
         }
 
-
         this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
-
     }
 
-    async componentDidMount() {
-        await this.setState({storyParts: this.props.storyParts});
-    }
-
-    handleCommentSubmit(data) {
-        console.log(JSON.stringify(data));
-        const postData = {
-            body: data,
-            postId: this.state.postId,
-            author: this.state.author,
-            datePublished: new Date(),
-        };
-
-        axios.create(postData).then((response) => {
-            console.log('response', response.data);
-            let storyParts = this.state.storyParts;
-            if (response.data)
-                storyParts.unshift({
-                    id: response.data.storyId,
-                    body: response.data.body,
-                    author: response.data.author,
-                    localDate: response.data.localDate,
-                })
-            this.setState({storyParts: storyParts})
+    componentDidUpdate() {
+        axios.getAll(this.state.storyId).then (response => {
+            console.log('res',response.data)
         });
     }
 
-    renderComments() {
-        return this.props.storyParts.map((comment, index) => {
-            const {storyId, body, localDate, author} = comment;
-            return (
-                <Comment key={index} storyId={storyId} body={body} localDate={localDate} author={author}/>
-        );
+    handleCommentSubmit(data) {
+        const postData = {
+            body: data,
+            storyId: this.state.storyId,
+            localDate: new Date(),
+        };
 
+        console.log(postData)
+
+        axios.create(postData).then((response) => {
+            console.log('response', response.data);
+            let comments = this.props.comments;
+            comments.unshift({
+                id: response.data.id,
+                body: response.data.body,
+                localDate: response.data.localDate,
+            });
+            this.setState({comments: comments});
+        })
+    }
+
+    renderComments() {
+        return this.props.comments.map((comment, id) => {
+            const {storyId, body, localDate} = comment;
+            return (
+                <Comment key={id} storyId={storyId} body={body} localDate={localDate}/>
+            );
         })
     }
 

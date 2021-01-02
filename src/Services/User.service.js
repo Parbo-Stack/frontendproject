@@ -13,13 +13,8 @@ const deleteById = async (id) => {
     return await http.delete(`/user/${id}`);
 };
 
-const updateUser = async (id) => {
-    return await http.put(`/user/${id}`)
-}
-
 export default {
     getAllUsers,
     getById,
-    deleteById,
-    updateUser
+    deleteById
 }

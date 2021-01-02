@@ -1,25 +1,28 @@
 import http from "../http"
 
+const findAllByAuthorIsNotNull = async () => {
+    return await http.get('/stories');
+};
+
+const finishStory = async () => {
+    return await http.get('/stories/author');
+};
+
 const getAll = async () => {
     return await http.get('/stories');
 };
-//props hier doorgeven omdat het de id niet erkent dus als props geeft hij het door
+
 const getById = async (props) => {
     return await http.get(`/stories/${props}`);
 };
 
-const findByTitle = async (title) => {
-    return await http.get(`/findbytitle?title=${title}`);
+const nullTitle = async () => {
+    return await http.get('/stories/titleIsNull');
 };
 
 const createStory = async (data) => {
     return await http.post('/story', data);
 };
-
-const getAllByAuthor = async (author) => {
-    console.log(JSON.stringify(author))
-    return await http.get(`/stories/${author}`)
-}
 
 const updateStory = async (id, data) => {
     return await http.put(`/story/${id}`, data);
@@ -34,12 +37,13 @@ const removeAll = async () => {
 };
 
 export default {
-    getAll,
+    finishStory,
+    findAllByAuthorIsNotNull,
     getById,
+    getAll,
     createStory,
     updateStory,
     deleteById,
     removeAll,
-    findByTitle,
-    getAllByAuthor
+    nullTitle
 }

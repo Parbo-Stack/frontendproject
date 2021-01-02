@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom'
-import StoryService from "../../../Services/Story.service";
-import './styles.css'
+import React, {useEffect, useState} from "react";
+import StoryService from "../../../Services/Story.service"
+import { useParams } from 'react-router-dom'
+import '../../../Styles/StoryPost.css'
 import CommentGroup from "../../../Comments/CommentGroup";
 
-export default function ReadStoryPost() {
+export default function FinishStoryPost() {
     let {storyId} = useParams();
+    console.log(JSON.stringify(storyId))
     const initialState = {
         title: '',
         body: '',
@@ -15,7 +16,7 @@ export default function ReadStoryPost() {
 
     const [post, setPost] = useState(initialState);
 
-    const getStory = () => {
+    const getFinishStory = () => {
         StoryService.getById(storyId)
             .then(response => {
                 setPost(response.data);
@@ -27,7 +28,7 @@ export default function ReadStoryPost() {
     };
 
     useEffect(() => {
-        getStory();
+        getFinishStory();
     }, []);
 
     return (
@@ -35,7 +36,7 @@ export default function ReadStoryPost() {
             <h1> {post.title} </h1>
             <p> {post.body} </p>
             <h3 className="date"> posted on: {post.localDate}</h3>
-            <CommentGroup postId={storyId} storyParts={post.storyParts}/>
+            <CommentGroup postId={storyId} comments={post.storyParts}/>
         </div>
     );
 }

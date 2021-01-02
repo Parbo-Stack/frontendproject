@@ -4,7 +4,7 @@ import http from "../http";
 const create = (data) => {
     //(JSON.stringify to get the info
     console.log(JSON.stringify({data}))
-    return http.post(`/story/${data.postId}/storypart`, {body:data.body});
+    return http.post(`/story/${data.storyId}/storypart`, {body:data.body});
 }
 
 const getAll = async () => {
@@ -23,5 +23,5 @@ export default {
     create,
     getAll,
     getById,
-    deleteById
+    deleteById,
 };

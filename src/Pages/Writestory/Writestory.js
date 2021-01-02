@@ -1,39 +1,46 @@
 import React, {useState} from 'react';
-import WriteStoryDataService from "../../Services/WriteStory.service"
+import StoryService from '../../Services/Story.service';
+// import {writestoryschema} from '../../Components/Validation/WriteStoryValidation'
 
 const WriteStory = () => {
+
     const initialStoryState = {
         id: null,
-        title: "",
         body: "",
-        authorId: "",
-        datePublished: new Date()
+        author: "",
+        datePublished: new Date(),
+        authorError: ""
+
     };
 
     const [write, setWrite] = useState(initialStoryState);
     const [submitted, setSubmitted] = useState(false);
 
-
     const handleInputChange = event => {
+        event.preventDefault();
+        const isValid = this.validate();
+        if (isValid) {
+            console.log(write.authorError);
+        }
         const {name, value} = event.target;
         setWrite({...write, [name]: value});
     };
 
     const saveStory = () => {
         const data = {
-            title: write.title,
             body: write.body,
-            authorId: write.authorId,
+            author: write.author,
             datePublished: write.datePublished,
+            authorError: write.authorError
         };
 
-        WriteStoryDataService.create(data)
+
+        StoryService.createStory(data)
             .then(response => {
                 setWrite({
                     id: response.data.id,
-                    title: response.data.title,
                     body: response.data.body,
-                    authorId: response.data.authorId,
+                    author: response.data.author,
                     datePublished: response.data.datePublished,
                     published: response.data.published
                 });
@@ -45,35 +52,32 @@ const WriteStory = () => {
             });
     };
 
-    const newStory = () => {
-        setWrite(initialStoryState);
-        setSubmitted(false);
-    };
+    // const author = async (event)=>{
+    //     event.preventDefault();
+    //     let formData = {
+    //         author: event.target[1].value
+    //     };
+    //     const isValid = await writestoryschema.isValid(formData);
+    //     console.log(isValid)
+    // };
+
 
     return (
         <div className="submit-form">
             {submitted ? (
+
                     <div>
-                        <h4>You submitted successfully!</h4>
-                        <button className="btn btn-success" onClick={newStory}>
-                            Add
-                        </button>
+                        <br/>
+                        <h4 style={{textAlign: "center"}}>You submitted successfully!</h4>
                     </div>
                 ) :
+
                 <div className="form-group">
-                    <h1 style={{fontSize:"30px", textAlign:"center", fontWeight:"bold", color:"Lightblue"}}>Hoe creatief ben je?</h1>
-                    <p style={{fontStyle: "italic"}}>Schrijf en post je eigen verhaal en naar ons toe, wordt het door ons goedgekeurd, posten wij volgend week op onze site!
-                    vergeet je naam niet, en scheldwoorden zijn niet toegestaan.</p>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="title"
-                        required
-                        value={write.title}
-                        onChange={handleInputChange}
-                        placeholder="Title"
-                        name="title"
-                    />
+                    <h1 style={{fontSize: "30px", textAlign: "center", fontWeight: "bold", color: "Lightblue"}}>Hoe
+                        creatief ben je?</h1>
+                    <p style={{fontStyle: "italic", display: 'inline-block', justifyContent: 'space-between'}}>
+                        Schrijf je eigen verhaal en wordt het door ons goedgekeurd, dan posten wij het volgend week op onze site!<br/>
+                        vergeet je naam niet, en scheldwoorden zijn niet toegestaan.</p>
                     <textarea
                         rows='10'
                         className="form-control my-3"
@@ -88,12 +92,11 @@ const WriteStory = () => {
                         <input
                             type="text"
                             className="form-control"
-                            id="authorId"
-                            required
-                            value={write.authorId}
-                            placeholder="Author"
+                            id="author"
+                            value={write.author}
                             onChange={handleInputChange}
-                            name="authorId"
+                            placeholder="Author"
+                            name="author"
                         />
                     </div>
                     <div className="form-group">
@@ -116,6 +119,8 @@ const WriteStory = () => {
                 </div>
             }
         </div>
+
+
     );
 };
 export default WriteStory;

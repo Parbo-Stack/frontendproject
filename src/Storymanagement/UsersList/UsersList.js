@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
-import UserService from "../Services/User.service";
+import UserService from "../../Services/User.service";
 import {Link} from "react-router-dom";
+import '../../Styles/BoardAdmin.css';
 
-const BoardAdmin = () => {
+const UsersList = () => {
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
@@ -77,7 +78,7 @@ const BoardAdmin = () => {
                             {currentUser.userId}
                         </div>
                         <Link//de id is undefined omdat het de id niet herkent als id maar als b.v storyId
-                            to={"/edituser/" + currentUser.userId}
+                            to={"/deleteuser/" + currentUser.userId}
                             className="badge badge-warning"
                         >
                             Edit
@@ -86,7 +87,7 @@ const BoardAdmin = () => {
                 ) : (
                     <div>
                         <br/>
-                        <p>Please click on a Story...</p>
+                        <p>Please click on a User...</p>
                     </div>
                 )}
             </div>
@@ -94,4 +95,4 @@ const BoardAdmin = () => {
     );
 };
 
-export default BoardAdmin;
+export default UsersList;

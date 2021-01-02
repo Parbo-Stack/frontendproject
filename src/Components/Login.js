@@ -1,8 +1,9 @@
-import React, {useState, useRef, useEffect, useContext} from "react";
+import React, {useState, useRef} from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import AuthService from "../Services/Auth.service";
+import '../Styles/RegisterForm.css';
 
 const required = (value) => {
     if (!value) {
@@ -44,7 +45,7 @@ const Login = (props) => {
         if (checkBtn.current.context._errors.length === 0) {
             AuthService.login(username, password).then(
                 () => {
-                    props.history.push("/profile");
+                    props.history.push("/home");
                     window.location.reload();
                 },
                 (error) => {
@@ -67,7 +68,7 @@ const Login = (props) => {
         <div className="col-md-12">
             <div className="card card-container">
                 <img
-                    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                    src="https://lh3.googleusercontent.com/proxy/Vl3zOLV2D8_etaI5rt90fwlV4qD4kU2qolVngUvYq9KxiNzH6IMjBg7aNiVSvMs81IJ6-jTcfy_btO6K4JAPzrBeFA=s0-d"
                     alt="profile-img"
                     className="profile-img-card"
                 />

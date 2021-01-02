@@ -1,40 +1,37 @@
 import React, {useState} from 'react';
-import StoryDataService from "../../Services/Story.service";
-import '../../Styles/AddStory.css'
+import StoryService from '../../Services/Story.service'
+import './Style.css'
 
-const AddStory = () => {
-    const initialStoryState = {
+
+const AddFinishStory = () => {
+    const initialFinishStoryState = {
         id: null,
-        title: "",
+        title:"",
         body: "",
-        author: "",
         datePublished: new Date()
-    };
+    }
 
-    const [story, setStory] = useState(initialStoryState);
+    const [finishStory, setFinishStory] = useState(initialFinishStoryState)
     const [submitted, setSubmitted] = useState(false);
 
     const handleInputChange = event => {
         const {name, value} = event.target;
-        setStory({...story, [name]: value});
+        setFinishStory({...finishStory, [name]: value});
     };
 
     const saveStory = () => {
         const data = {
-            title: story.title,
-            body: story.body,
-            author: story.author,
-            datePublished: story.datePublished,
+            title:finishStory.title,
+            body: finishStory.body,
+            datePublished: finishStory.datePublished,
         };
 
-
-        StoryDataService.createStory(data)
+        StoryService.createStory(data)
             .then(response => {
-                setStory({
+                setFinishStory({
                     id: response.data.id,
-                    title:response.data.id,
+                    title:response.data.title,
                     body: response.data.body,
-                    author:response.data.author,
                     datePublished: response.data.datePublished,
                     published: response.data.published
                 });
@@ -46,9 +43,8 @@ const AddStory = () => {
             });
     };
 
-
     const newStory = () => {
-        setStory(initialStoryState);
+        setFinishStory(initialFinishStoryState);
         setSubmitted(false);
     };
 
@@ -69,7 +65,7 @@ const AddStory = () => {
                         className="form-control"
                         id="title"
                         required
-                        value={story.title}
+                        value={finishStory.title}
                         onChange={handleInputChange}
                         placeholder="Title"
                         name="title"
@@ -79,23 +75,11 @@ const AddStory = () => {
                         className="form-control my-3"
                         id="body"
                         required
-                        value={story.body}
+                        value={finishStory.body}
                         onChange={handleInputChange}
                         placeholder="Body..."
                         name="body">
         </textarea>
-                    <div className="form-group">
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="author"
-                            required
-                            value={story.author}
-                            onChange={handleInputChange}
-                            placeholder="Author"
-                            name="author"
-                        />
-                    </div>
                     <div className="form-group">
                         <label htmlFor="datePublished">Date Published</label>
                         <input
@@ -103,18 +87,20 @@ const AddStory = () => {
                             className="form-control"
                             id="datePublished"
                             required
-                            value={story.datePublished}
+                            value={finishStory.datePublished}
                             onChange={handleInputChange}
                             name="datePublished"
+                            disabled
                         />
                         <br/>
                         <button onClick={saveStory} className="btn btn-primary float-right">
-                            Submit Read Story
+                            Submit Story
                         </button>
                     </div>
                 </div>
             }
         </div>
     );
-};
-export default AddStory;
+}
+
+export default AddFinishStory;

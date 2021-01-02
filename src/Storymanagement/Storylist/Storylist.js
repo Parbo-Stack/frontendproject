@@ -7,16 +7,10 @@ const StoriesList = () => {
     const [stories, setStories] = useState([]);
     const [currentStory, setCurrentStory] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
-    const [searchTitle, setSearchTitle] = useState("");
 
     useEffect(() => {
         retrieveStories();
     }, []);
-
-    const onChangeSearchTitle = e => {
-        const searchTitle = e.target.value;
-        setSearchTitle(searchTitle);
-    };
 
     const retrieveStories = () => {
         StoryService.getAll()
@@ -51,9 +45,6 @@ const StoriesList = () => {
             });
     };
 
-    // const test=() =>{
-    //     console.log(currentStory.id);
-    //     };
     return (
         <div className="list row">
             <div className="col-md-6">
@@ -101,12 +92,12 @@ const StoriesList = () => {
                             <label>
                                 <strong>Author</strong>
                             </label>{" "}
-                            {currentStory.authorId}
+                            {currentStory.author}
                         </div>
                         <div>
                             <label><strong>Date Published</strong>
                             </label>{" "}
-                            {currentStory.datePublished}
+                            {currentStory.localDate}
                         </div>
                         <div>
                             <label>
@@ -114,8 +105,7 @@ const StoriesList = () => {
                             </label>{" "}
                             {currentStory.published ? "Published" : "Pending"}
                         </div>
-
-                        <Link//de id is undefined omdat het de id niet herkent als id maar als b.v storyId
+                        <Link
                             to={"/editstory/" + currentStory.storyId}
                             className="badge badge-warning"
                         >

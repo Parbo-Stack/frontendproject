@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
-import WriteStoryService from "../../Services/WriteStory.service";
-
+import StoryService from '../../Services/Story.service';
 
 const UsersStory = () => {
     const [stories, setStories] = useState([]);
@@ -13,7 +12,7 @@ const UsersStory = () => {
     }, []);
 
     const retrieveStories = () => {
-        WriteStoryService.getAll()
+        StoryService.nullTitle()
             .then(response => {
                 setStories(response.data);
                 console.log(response.data);
@@ -22,7 +21,6 @@ const UsersStory = () => {
                 console.log(e);
             });
     };
-
 
     const refreshList = () => {
         retrieveStories();
@@ -38,7 +36,7 @@ const UsersStory = () => {
     return (
         <div className="list row">
             <div className="col-md-6">
-                <h4>Stories List</h4>
+                <h4>Users Story</h4>
 
                 <ul className="list-group">
                     {stories &&
@@ -50,7 +48,7 @@ const UsersStory = () => {
                             onClick={() => setActiveStory(story, index)}
                             key={index}
                         >
-                            {story.title}
+                            {story.body}
                         </li>
                     ))}
                 </ul>
@@ -61,12 +59,6 @@ const UsersStory = () => {
                         <h4>Story</h4>
                         <div>
                             <label>
-                                <strong>Title:</strong>
-                            </label>{" "}
-                            {currentStory.title}
-                        </div>
-                        <div>
-                            <label>
                                 <strong>Body:</strong>
                             </label>{" "}
                             {currentStory.body}
@@ -75,22 +67,12 @@ const UsersStory = () => {
                             <label>
                                 <strong>Author</strong>
                             </label>{" "}
-                            {currentStory.authorId}
+                            {currentStory.author}
                         </div>
                         <div>
                             <label><strong>Date Published</strong>
                             </label>{" "}
                             {currentStory.datePublished}
-                        </div>
-                        <div>
-                            <label><strong>User</strong>
-                            </label>{" "}
-                            {currentStory.user.username}
-                        </div>
-                        <div>
-                            <label><strong>User</strong>
-                            </label>{" "}
-                            {currentStory.user.email}
                         </div>
                     </div>
                 ) : (
@@ -104,4 +86,4 @@ const UsersStory = () => {
     );
 };
 
-export default UsersStory ;
+export default UsersStory;

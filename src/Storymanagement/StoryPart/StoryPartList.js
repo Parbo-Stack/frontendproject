@@ -76,12 +76,6 @@ const StoryPartList = () => {
                             </label>{" "}
                             {currentPart.storyPartId}
                         </div>
-                        {/*<div>*/}
-                        {/*    <label>*/}
-                        {/*        <strong>Id:</strong>*/}
-                        {/*    </label>{" "}*/}
-                        {/*    {currentPart.user.username}*/}
-                        {/*</div>*/}
                         <Link
                             to={"/deletepart/" + currentPart.storyPartId}
                             className="badge badge-warning"
@@ -93,7 +87,7 @@ const StoryPartList = () => {
                 ) : (
                     <div>
                         <br/>
-                        <p>Please click on a Story...</p>
+                        <p>Please click on a StoryPart...</p>
                     </div>
                 )}
             </div>
