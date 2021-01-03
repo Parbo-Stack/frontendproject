@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import CommentAdd from './CommentAdd';
 import Comment from './Comments';
-import axios from '../Services/Storypart.service';
+import axios from '../../Services/Storypart.service';
 
 class CommentGroup extends Component {
     constructor(props) {

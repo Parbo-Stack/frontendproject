@@ -1,5 +1,5 @@
 .date {
-    font-family: Oxygen;
+    font-family: Oxygen, serif;
     font-style: italic;
     font-weight: normal;
     font-size: 18px;
@@ -21,7 +21,7 @@
 }
 
 .author {
-    font-family: Oxygen;
+    font-family: Oxygen, serif;
     font-size: 18px;
     font-style: italic;
     text-align: right;

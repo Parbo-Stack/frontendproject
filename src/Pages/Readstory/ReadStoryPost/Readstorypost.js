@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 import StoryService from "../../../Services/Story.service";
-import './Style.css'
-import CommentGroup from "../../../Comments/CommentGroup";
+import '../../../Styles/StoryPost.css';
+import CommentGroup from "../../../Components/Comments/CommentGroup";
 
 export default function ReadStoryPost() {
     let {storyId} = useParams();

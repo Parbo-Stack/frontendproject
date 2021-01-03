@@ -23,6 +23,11 @@ export default function FinishStory() {
 
     return (
         <div className="list row">
+            <div style={{fontFamily:"Oxygen", textAlign:"center",fontSize:"20px"}} className="Intro"><h1 style={{fontSize:"30px", fontWeight:"bold", color:"blue"}}>
+                Ik begin en jij gaat verder!</h1>
+           <p style={{ fontStyle: "italic", display: 'inline-block', justifyContent: 'space-between'}}> Kies een verhaal en voeg jou eigen versie eraan toe <br/>
+            (scheldwoorden zijn verboden en worden verwijderd)</p>
+           </div>
             <div className="Story">
                 {postList.map((val, key) => {
                     return (

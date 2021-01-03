@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import StoryService from '../../Services/Story.service'
-import './Style.css'
+import '../../Styles/AddStory.css';
 
 
 const AddFinishStory = () => {

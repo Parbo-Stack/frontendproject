@@ -4,7 +4,8 @@ import '../../Styles/About.css'
 const About = () => {
 
     return (
-        <div className="container">
+        <span className="container">
+            <h1>Welkom op Owie</h1>
             <br/>
             <p> Welcome op onze website, voordat je een account aanmaakt ben ik zeker van dat je graag wilt weten<br/>
                 wat je allemaal hier kan doen. Je kunt een van onze verhalen lezen op "Read Story" of heb je er zin in<br/>
@@ -14,7 +15,7 @@ const About = () => {
 
                 Mocht je vragen hebben stuur ons een mail naar: admin@owie.com
             </p>
-        </div>
+        </span>
     )
 
 }

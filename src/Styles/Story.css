@@ -73,14 +73,14 @@
 }
 
 .localDate {
-    font-family: Oxygen;
+    font-family: Oxygen, serif;
     font-style: italic;
     font-weight: normal;
     font-size: 14px;
 }
 
 .title {
-    font-family: Oxygen;
+    font-family: Oxygen, serif;
     font-weight: bolder;
     font-style: italic;
     font-size: 30px;

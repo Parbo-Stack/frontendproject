@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import StoryService from '../../Services/Story.service';
-// import {writestoryschema} from '../../Components/Validation/WriteStoryValidation'
 
 const WriteStory = () => {
 
@@ -52,16 +51,6 @@ const WriteStory = () => {
             });
     };
 
-    // const author = async (event)=>{
-    //     event.preventDefault();
-    //     let formData = {
-    //         author: event.target[1].value
-    //     };
-    //     const isValid = await writestoryschema.isValid(formData);
-    //     console.log(isValid)
-    // };
-
-
     return (
         <div className="submit-form">
             {submitted ? (
@@ -73,7 +62,7 @@ const WriteStory = () => {
                 ) :
 
                 <div className="form-group">
-                    <h1 style={{fontSize: "30px", textAlign: "center", fontWeight: "bold", color: "Lightblue"}}>Hoe
+                    <h1 style={{fontFamily: "Oxigyn", fontSize: "30px", textAlign: "center", fontWeight: "bold", color: "blue"}}>Hoe
                         creatief ben je?</h1>
                     <p style={{fontStyle: "italic", display: 'inline-block', justifyContent: 'space-between'}}>
                         Schrijf je eigen verhaal en wordt het door ons goedgekeurd, dan posten wij het volgend week op onze site!<br/>
