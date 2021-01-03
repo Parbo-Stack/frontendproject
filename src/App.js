@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 import AuthService from "./Services/Auth.service";
-import PageRouting from "./Routes/Routes";
+import PageRouting from "./Components/Routes/Routes";
 
 function App() {
     const [showAdminBoard, setShowAdminBoard] = useState(false);

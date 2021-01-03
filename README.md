@@ -1,7 +1,14 @@
 # Owie FrontEnd
 
 #Setup
-This app was created using npm install react and run with npm start.
+Use npm start to start the project.
+- log in as admin to view the admin side.
+
+* UserName: Admin
+* Email: admin@admin.com
+* Password: BlauweBeker$12
+- create an account as user to view the user side.
+
 
 #Packages used
 * axios
@@ -10,16 +17,9 @@ This app was created using npm install react and run with npm start.
 * react-scripts
 * validator
 
-#Admin UserName and Password
-* UserName: Admin
-* Password: BlauweBeker$12
-
-#Crud
-Although time wasn't on my side i was able to create a fully working 
-crud repo.
-
 #Project on Git
 https://github.com/Parbo-Stack/frontendproject.git
+https://github.com/Parbo-Stack/BackEndProject.git
 
 
 
